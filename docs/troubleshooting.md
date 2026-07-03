@@ -2363,3 +2363,522 @@ Most L2TP/IPsec incidents originate from one of the following areas:
 
 Following the diagnostic sequence presented in this guide enables administrators to isolate the failing component systematically and restore service with minimal disruption.
 
+---
+
+# Firewall Troubleshooting
+
+A correctly configured VPN cannot function if firewall policies prevent legitimate traffic.
+
+Firewall issues are among the most common causes of VPN connectivity problems.
+
+The recommended troubleshooting sequence is:
+
+```text
+VPN Established
+
+↓
+
+Input Chain
+
+↓
+
+Forward Chain
+
+↓
+
+NAT
+
+↓
+
+Internal Resource
+
+↓
+
+Successful Communication
+```
+
+Always verify firewall rules before modifying VPN configuration.
+
+---
+
+# Problem 1 — VPN Port Not Reachable
+
+## Symptoms
+
+Typical symptoms include:
+
+- VPN client times out.
+- Connection never starts.
+- No authentication occurs.
+- No traffic reaches the router.
+
+---
+
+## Possible Causes
+
+- Firewall blocking VPN port
+- Incorrect interface assignment
+- Wrong destination address
+- ISP filtering
+- Missing NAT forwarding
+
+---
+
+## Diagnosis
+
+Verify:
+
+- Input Chain
+- WAN Interface
+- Public IP Address
+- Port Forwarding
+- Firewall Rule Order
+
+---
+
+## Verification
+
+Confirm:
+
+- VPN port is reachable.
+- Router receives connection attempts.
+- Firewall counters increase.
+- Logs show incoming packets.
+
+---
+
+## Resolution
+
+- Allow the required VPN protocol.
+- Review Input Chain rules.
+- Verify Interface Lists.
+- Confirm correct WAN interface.
+
+---
+
+## Prevention
+
+Document every Internet-facing firewall rule.
+
+Review exposed services regularly.
+
+---
+
+# Problem 2 — Connected but Internal Resources Unreachable
+
+## Symptoms
+
+Users authenticate successfully.
+
+However they cannot:
+
+- Access file servers.
+- Ping internal hosts.
+- Connect using RDP.
+- Open internal web applications.
+
+---
+
+## Possible Causes
+
+- Forward Chain blocking traffic
+- Missing firewall rule
+- Incorrect Address List
+- VLAN restriction
+- Network segmentation policy
+
+---
+
+## Diagnosis
+
+Review:
+
+- Forward Chain
+- Interface Lists
+- Address Lists
+- VLAN policy
+- Routing
+
+---
+
+## Verification
+
+Verify communication step by step.
+
+VPN Client
+
+↓
+
+VPN Gateway
+
+↓
+
+Firewall
+
+↓
+
+Internal Gateway
+
+↓
+
+Destination Host
+
+Determine the exact point where traffic stops.
+
+---
+
+## Resolution
+
+Modify only the required firewall rule.
+
+Avoid broad "Allow All" rules.
+
+Maintain Least Privilege.
+
+---
+
+## Prevention
+
+Review firewall policies whenever new VPN networks are introduced.
+
+---
+
+# Problem 3 — One-Way Communication
+
+## Symptoms
+
+- Client reaches server.
+- Server cannot respond.
+- Ping succeeds only one direction.
+- TCP sessions fail.
+
+---
+
+## Possible Causes
+
+- Forward Chain
+- Asymmetric Routing
+- Incorrect NAT
+- Missing Return Route
+
+---
+
+## Diagnosis
+
+Verify:
+
+- Forward Chain
+- Route Table
+- NAT Rules
+- Gateway Selection
+
+---
+
+## Resolution
+
+Correct routing first.
+
+Then review firewall rules.
+
+Finally review NAT.
+
+---
+
+## Prevention
+
+Always verify bidirectional communication.
+
+---
+
+# NAT Troubleshooting
+
+Network Address Translation is frequently responsible for VPN communication failures.
+
+Review NAT only after authentication and routing have been verified.
+
+---
+
+# Problem 4 — Internet Access Through VPN Fails
+
+## Symptoms
+
+- VPN connected.
+- Internal LAN accessible.
+- Internet unavailable.
+
+---
+
+## Possible Causes
+
+- Missing Masquerade
+- Incorrect Source NAT
+- Incorrect Default Route
+- Firewall restrictions
+
+---
+
+## Diagnosis
+
+Verify:
+
+- Source NAT
+- Masquerade
+- Default Route
+- WAN Interface
+
+---
+
+## Resolution
+
+Correct Source NAT configuration.
+
+Verify Internet routing.
+
+---
+
+## Prevention
+
+Document every NAT rule.
+
+Avoid duplicate Masquerade rules.
+
+---
+
+# Problem 5 — Hairpin NAT Failure
+
+## Symptoms
+
+Internal users cannot access services using the organization's public domain name.
+
+External users connect successfully.
+
+---
+
+## Possible Causes
+
+- Missing Hairpin NAT
+- Incorrect DNS
+- Incorrect NAT order
+
+---
+
+## Diagnosis
+
+Review:
+
+- NAT Rules
+- DNS Resolution
+- Firewall
+
+---
+
+## Resolution
+
+Implement Hairpin NAT.
+
+Verify internal DNS behavior.
+
+---
+
+## Prevention
+
+Document every published service.
+
+Validate internal and external access.
+
+---
+
+# DNS Troubleshooting
+
+DNS issues frequently appear to be VPN failures.
+
+Always verify DNS independently.
+
+---
+
+# Problem 6 — Internal Hostnames Cannot Be Resolved
+
+## Symptoms
+
+Users can:
+
+- Ping IP addresses.
+
+Users cannot:
+
+- Resolve hostnames.
+- Locate Active Directory.
+- Access internal applications by name.
+
+---
+
+## Possible Causes
+
+- Wrong DNS server
+- Firewall blocking DNS
+- Incorrect DNS suffix
+- Internal DNS unavailable
+
+---
+
+## Diagnosis
+
+Verify:
+
+- Assigned DNS Server
+- DNS Reachability
+- DNS Suffix
+- Internal DNS Records
+
+---
+
+## Resolution
+
+Assign internal DNS servers to VPN clients.
+
+Verify firewall rules.
+
+Review DNS forwarding.
+
+---
+
+## Prevention
+
+Never rely on public DNS servers for internal infrastructure.
+
+---
+
+# Problem 7 — DNS Resolution is Slow
+
+## Symptoms
+
+- Applications pause.
+- Login delays.
+- Slow file access.
+- Intermittent failures.
+
+---
+
+## Possible Causes
+
+- DNS timeout
+- Incorrect Forwarder
+- Packet Loss
+- WAN latency
+
+---
+
+## Diagnosis
+
+Measure:
+
+- DNS response time
+- Packet loss
+- WAN latency
+
+---
+
+## Resolution
+
+Correct DNS infrastructure before modifying VPN configuration.
+
+---
+
+## Prevention
+
+Monitor DNS continuously.
+
+Include DNS in infrastructure monitoring.
+
+---
+
+# Firewall, NAT and DNS Troubleshooting Summary
+
+Most communication failures originate from one of the following:
+
+- Firewall Input Chain
+- Firewall Forward Chain
+- Incorrect NAT
+- Missing Hairpin NAT
+- Incorrect DNS Server
+- Missing Return Route
+- Incorrect VLAN Policy
+
+Always troubleshoot in the following order:
+
+```text
+Authentication
+
+↓
+
+Firewall
+
+↓
+
+Routing
+
+↓
+
+NAT
+
+↓
+
+DNS
+
+↓
+
+Applications
+```
+
+---
+
+# Troubleshooting Decision Tree
+
+When diagnosing VPN connectivity problems, follow the troubleshooting process in the order shown below.
+
+Changing multiple configuration elements simultaneously should be avoided, as it makes identifying the root cause significantly more difficult.
+
+```text
+VPN Doesn't Connect
+
+        │
+        ▼
+Can Reach Public IP?
+
+        │
+   ┌────┴────┐
+   │         │
+  NO        YES
+   │         │
+Internet   Can Reach VPN Port?
+               │
+          ┌────┴────┐
+          │         │
+         NO        YES
+          │         │
+     Firewall   Authentication
+                     │
+                     ▼
+                  Routing
+                     │
+                     ▼
+                     DNS
+                     │
+                     ▼
+               Application Access
+                     │
+                     ▼
+                 Problem Solved
+```
+
+Following this structured workflow helps isolate the failing component quickly while minimizing unnecessary configuration changes and reducing service downtime.
+
+---
+
+# Conclusion
+
+Most VPN incidents are not caused by the VPN protocol itself, but by issues related to firewall policies, routing, NAT, DNS or authentication.
+
+By following the systematic troubleshooting methodology presented throughout this document, administrators can identify the root cause efficiently, reduce recovery time and maintain a secure, stable and well-documented VPN infrastructure.
+
+The procedures described in this guide apply to WireGuard, OpenVPN and L2TP/IPsec deployments based on MikroTik RouterOS and should be incorporated into every production support and operational workflow.
