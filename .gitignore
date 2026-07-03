@@ -1,0 +1,53 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Vim
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Backup files
+*.backup
+*.old
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated documentation
+site/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
