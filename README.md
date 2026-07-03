@@ -11,6 +11,27 @@
 
 ---
 
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Why this project?](#why-this-project)
+- [Supported VPN Technologies](#supported-vpn-technologies)
+- [Key Features](#key-features)
+- [Repository Structure](#repository-structure)
+- [Documentation](#documentation)
+- [Configuration Files](#configuration-files)
+- [VPN Architecture](#vpn-architecture)
+- [VPN Protocol Comparison](#vpn-protocol-comparison)
+- [Security Recommendations](#security-recommendations)
+- [Screenshots](#screenshots)
+- [Related Blog Article](#related-blog-article)
+- [Related Projects](#related-projects)
+- [Technologies](#technologies)
+- [License](#license)
+- [Author](#author)
+
+---
+
 # Project Overview
 
 Virtual Private Networks (VPNs) have become an essential component of modern business infrastructure. They enable employees, administrators and remote offices to securely access internal resources over the Internet.
