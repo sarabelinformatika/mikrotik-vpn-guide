@@ -459,4 +459,6 @@ If you found this repository useful, consider:
 - Reading the related technical articles on the SARABEL Informatika blog
 - Following future project updates on GitHub
 
-Thank you for your support!
+> **Note**
+>
+> All IP addresses, hostnames, user accounts and example configurations used in this repository are provided for demonstration purposes only and should be replaced before deployment into a production environment.
