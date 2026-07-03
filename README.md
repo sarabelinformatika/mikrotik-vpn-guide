@@ -46,6 +46,32 @@ The project combines practical configuration examples, security recommendations,
 
 ---
 
+# Reference Configuration
+
+This repository is based on a **Reference Lab Environment** designed to demonstrate production-ready MikroTik VPN deployments.
+
+The included RouterOS configuration files (`.rsc`) are **reference implementations**, intended to provide a secure and reproducible starting point for real-world environments.
+
+Every organization has unique networking requirements, IP addressing schemes, routing policies and security standards. Before deploying any configuration into production, carefully review and adapt all settings to match your infrastructure.
+
+The reference environment used throughout this repository is:
+
+| Component | Value |
+|-----------|-------|
+| RouterOS Version | 7.x |
+| WAN Interface | ether1 |
+| LAN Network | 192.168.110.0/24 |
+| Router LAN Address | 192.168.110.1 |
+| VPN Network | 192.168.120.0/24 |
+| VPN Gateway | 192.168.120.1 |
+| WireGuard Port | UDP 51820 |
+| OpenVPN Port | TCP 1194 |
+| L2TP/IPsec | UDP 500 / 4500 / 1701 |
+
+Using a consistent reference environment ensures that every document, configuration example and troubleshooting procedure in this repository follows the same architecture, making the project easier to understand, reproduce and extend.
+
+---
+
 # Why this project?
 
 Although MikroTik RouterOS offers multiple VPN technologies, administrators often need to gather information from various sources before deploying a secure solution.
