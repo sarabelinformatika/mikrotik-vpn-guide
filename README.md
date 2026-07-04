@@ -1,6 +1,6 @@
 # Enterprise MikroTik VPN Guide
 
-> A comprehensive guide for deploying secure MikroTik VPN solutions using WireGuard, OpenVPN and L2TP/IPsec with production-ready configurations, security best practices and troubleshooting.
+> A comprehensive guide for deploying secure MikroTik VPN solutions using WireGuard, OpenVPN and L2TP/IPsec with production-ready reference configurations, enterprise security best practices and troubleshooting.
 
 ![MikroTik](https://img.shields.io/badge/MikroTik-E3000F?style=for-the-badge)
 ![RouterOS](https://img.shields.io/badge/RouterOS-7.x-blue?style=for-the-badge)
@@ -11,9 +11,35 @@
 
 ---
 
-## Table of Contents
+## Quick Navigation
+
+📘 Documentation
+
+- [Installation](docs/installation.md)
+- [WireGuard Guide](docs/wireguard.md)
+- [OpenVPN Guide](docs/openvpn.md)
+- [L2TP/IPsec Guide](docs/l2tp-ipsec.md)
+- [Firewall Best Practices](docs/firewall.md)
+- [Routing Best Practices](docs/routing.md)
+- [Security Best Practices](docs/security.md)
+- [Troubleshooting Guide](docs/troubleshooting.md)
+- [FAQ](docs/faq.md)
+- [VPN Protocol Comparison](docs/vpn-protocol-comparison.md)
+
+⚙️ Reference Configurations
+
+- `mikrotik/base/`
+- `mikrotik/wireguard/`
+- `mikrotik/openvpn/`
+- `mikrotik/l2tp-ipsec/`
+- `mikrotik/radius/`
+
+---
+
+# Table of Contents
 
 - [Project Overview](#project-overview)
+- [Reference Configuration](#reference-configuration)
 - [Why this project?](#why-this-project)
 - [Supported VPN Technologies](#supported-vpn-technologies)
 - [Key Features](#key-features)
@@ -22,6 +48,7 @@
 - [Configuration Files](#configuration-files)
 - [VPN Architecture](#vpn-architecture)
 - [VPN Protocol Comparison](#vpn-protocol-comparison)
+- [Which VPN Protocol Should You Choose?](#which-vpn-protocol-should-you-choose)
 - [Security Recommendations](#security-recommendations)
 - [Screenshots](#screenshots)
 - [Related Blog Article](#related-blog-article)
@@ -29,6 +56,8 @@
 - [Technologies](#technologies)
 - [License](#license)
 - [Author](#author)
+- [Contributing](#contributing)
+- [Support](#support)
 
 ---
 
@@ -36,13 +65,22 @@
 
 Virtual Private Networks (VPNs) have become an essential component of modern business infrastructure. They enable employees, administrators and remote offices to securely access internal resources over the Internet.
 
-This repository provides a **comprehensive, production-oriented guide** for deploying VPN services on **MikroTik RouterOS**, covering the three most widely used VPN technologies:
+This repository provides a comprehensive, production-oriented reference for deploying VPN services on **MikroTik RouterOS**, covering the three most widely used VPN technologies:
 
 - WireGuard
 - OpenVPN
 - L2TP/IPsec
 
-The project combines practical configuration examples, security recommendations, troubleshooting guidance and deployment best practices into a single, structured knowledge base suitable for both learning and production environments.
+Unlike many VPN tutorials that focus only on basic configuration, this project combines architecture guidance, enterprise security recommendations, RouterOS reference configurations and operational documentation into a single knowledge base.
+
+The repository is suitable for:
+
+- System Administrators
+- Network Engineers
+- IT Consultants
+- Managed Service Providers (MSPs)
+- Small and Medium-sized Businesses
+- Enterprise Infrastructure Teams
 
 ---
 
@@ -74,20 +112,22 @@ Using a consistent reference environment ensures that every document, configurat
 
 # Why this project?
 
-Although MikroTik RouterOS offers multiple VPN technologies, administrators often need to gather information from various sources before deploying a secure solution.
+Although MikroTik RouterOS supports several VPN technologies, administrators often need to collect information from multiple sources before deploying a secure and maintainable solution.
 
-This repository brings together:
+This repository consolidates:
 
-- production-ready configuration examples;
-- security best practices;
-- deployment recommendations;
-- troubleshooting procedures;
-- protocol comparison;
-- firewall examples;
-- routing recommendations;
-- real-world implementation guidance.
+- Production-ready reference configurations
+- Enterprise security recommendations
+- Firewall best practices
+- Routing design guidance
+- Troubleshooting procedures
+- VPN protocol comparison
+- Operational recommendations
+- Reference architecture
+- Configuration examples
+- Deployment documentation
 
-The goal is to provide a reproducible and well-documented reference that can significantly reduce deployment time while improving security and maintainability.
+The objective is to provide a structured reference that reduces deployment time while improving consistency, maintainability and long-term security.
 
 ---
 
@@ -98,10 +138,16 @@ This repository focuses on the following VPN protocols.
 | Protocol | Encryption | Performance | Recommended Usage |
 |-----------|------------|-------------|-------------------|
 | WireGuard | Excellent | Excellent | Modern site-to-site and remote access VPN |
-| OpenVPN | Excellent | Very Good | Cross-platform remote access |
-| L2TP/IPsec | Good | Good | Legacy compatibility and older client devices |
+| OpenVPN | Excellent | Very Good | Enterprise remote access and centralized authentication |
+| L2TP/IPsec | Good | Good | Legacy compatibility and built-in operating system VPN clients |
 
-Each protocol is documented separately with configuration examples, security recommendations and troubleshooting guidance.
+Each protocol includes:
+
+- Deployment Guide
+- Security Recommendations
+- Troubleshooting
+- Best Practices
+- Reference Configuration
 
 ---
 
@@ -109,19 +155,24 @@ Each protocol is documented separately with configuration examples, security rec
 
 - Enterprise-oriented deployment guidance
 - MikroTik RouterOS 7.x support
-- WireGuard configuration examples
-- OpenVPN configuration examples
-- L2TP/IPsec configuration examples
+- Modular RouterOS reference configurations
+- Enterprise deployment architecture
+- WireGuard deployment guide
+- OpenVPN deployment guide
+- L2TP/IPsec deployment guide
 - Firewall best practices
-- NAT configuration examples
-- Security hardening recommendations
-- Troubleshooting documentation
-- Production-ready examples
+- Routing recommendations
+- Security hardening guidance
+- Enterprise troubleshooting handbook
+- VPN protocol comparison
+- Production-ready reference implementations
 - Open-source documentation
 
 ---
 
 # Repository Structure
+
+The repository is organized into modular components to simplify deployment, maintenance and future expansion.
 
 ```text
 .
@@ -131,73 +182,105 @@ Each protocol is documented separately with configuration examples, security rec
 │   ├── openvpn.md
 │   ├── l2tp-ipsec.md
 │   ├── firewall.md
+│   ├── routing.md
 │   ├── security.md
 │   ├── troubleshooting.md
-│   └── faq.md
+│   ├── faq.md
+│   └── vpn-protocol-comparison.md
 │
 ├── mikrotik/
-│   ├── wireguard.rsc
-│   ├── openvpn-server.rsc
-│   ├── l2tp-ipsec.rsc
-│   ├── firewall.rsc
-│   ├── nat.rsc
-│   ├── address-list.rsc
-│   ├── ppp-profile.rsc
-│   └── radius-example.rsc
+│   ├── base/
+│   │   ├── address-list.rsc
+│   │   ├── firewall-filter.rsc
+│   │   ├── firewall-nat.rsc
+│   │   ├── interface-list.rsc
+│   │   ├── services-hardening.rsc
+│   │   └── logging.rsc
+│   │
+│   ├── wireguard/
+│   │   └── wireguard.rsc
+│   │
+│   ├── openvpn/
+│   │   ├── openvpn-server.rsc
+│   │   └── ppp-profile.rsc
+│   │
+│   ├── l2tp-ipsec/
+│   │   └── l2tp-ipsec.rsc
+│   │
+│   └── radius/
+│       └── radius-example.rsc
 │
 ├── screenshots/
-│
 ├── images/
-│
 ├── ARCHITECTURE.md
 ├── CHANGELOG.md
 ├── LICENSE
 └── README.md
 ```
 
+## Directory Overview
+
+| Directory | Description |
+|-----------|-------------|
+| `docs/` | Complete technical documentation covering installation, deployment, security, troubleshooting and protocol comparison |
+| `mikrotik/base/` | Shared RouterOS reference configurations |
+| `mikrotik/wireguard/` | Reference WireGuard configuration |
+| `mikrotik/openvpn/` | Reference OpenVPN configuration |
+| `mikrotik/l2tp-ipsec/` | Reference L2TP/IPsec configuration |
+| `mikrotik/radius/` | Example RADIUS client configuration |
+| `images/` | Architecture diagrams and graphics |
+| `screenshots/` | Example RouterOS screenshots |
+
+The repository follows a modular design. Shared RouterOS components are stored in the `mikrotik/base/` directory, while each VPN technology has its own dedicated configuration directory. This approach improves maintainability, simplifies future expansion and allows administrators to reuse only the components required for their deployment.
+
 ---
 
 # Documentation
 
-The repository contains detailed documentation for every stage of a MikroTik VPN deployment.
+The repository contains comprehensive documentation covering every stage of planning, deploying, securing and maintaining MikroTik VPN environments.
 
 | Document | Description |
 |----------|-------------|
 | installation.md | Complete installation and deployment guide |
-| wireguard.md | WireGuard server and client configuration |
-| openvpn.md | OpenVPN server configuration and best practices |
+| wireguard.md | WireGuard deployment and configuration |
+| openvpn.md | OpenVPN deployment and configuration |
 | l2tp-ipsec.md | L2TP/IPsec deployment guide |
-| firewall.md | Firewall, NAT and routing recommendations |
-| security.md | Security hardening and best practices |
-| troubleshooting.md | Common VPN issues and solutions |
+| firewall.md | Enterprise firewall design and best practices |
+| routing.md | Routing design and VPN routing recommendations |
+| security.md | Security hardening and operational security |
+| troubleshooting.md | Enterprise troubleshooting handbook |
 | faq.md | Frequently Asked Questions |
+| vpn-protocol-comparison.md | Objective comparison of supported VPN technologies |
 
 ---
 
 # Configuration Files
 
-The `mikrotik` directory contains example RouterOS configuration files that can be used as references when deploying VPN services.
+The `mikrotik/` directory contains modular RouterOS reference configurations designed for production-oriented VPN deployments.
 
-Included examples cover:
+Included reference configurations cover:
 
-- WireGuard interface configuration
-- OpenVPN server configuration
-- L2TP/IPsec configuration
-- Firewall filter rules
-- NAT rules
-- Address Lists
+- Shared Address Lists
+- Interface Lists
+- Firewall Filter Rules
+- Firewall NAT Rules
+- RouterOS Service Hardening
+- Logging Configuration
+- WireGuard
+- OpenVPN Server
 - PPP Profiles
-- RADIUS example configuration
+- L2TP/IPsec
+- RADIUS Client Configuration
 
 > **Important**
 >
-> The provided `.rsc` files are reference configurations intended for learning and production adaptation. Always review and test configuration changes before applying them to a production environment.
+> Every `.rsc` file included in this repository is provided as a **reference implementation**. Review, test and adapt every configuration before importing it into a production environment.
 
 ---
 
 # VPN Architecture
 
-The repository documents the recommended architecture for secure MikroTik VPN deployments.
+The repository documents a modular architecture for secure MikroTik VPN deployments.
 
 ```text
                     Internet
@@ -217,100 +300,107 @@ The repository documents the recommended architecture for secure MikroTik VPN de
                Internal Network (LAN)
 ```
 
-The architecture is intentionally modular, allowing organizations to choose the VPN technology that best fits their security requirements, client compatibility and operational needs.
+The modular architecture allows organizations to deploy only the VPN technologies required for their environment while maintaining a consistent security model and operational workflow.
 
 ---
 
 # VPN Protocol Comparison
 
-Choosing the appropriate VPN technology depends on your security requirements, client compatibility and performance expectations.
+Choosing the appropriate VPN technology depends on your security requirements, authentication model, client compatibility and operational needs.
 
-The following table summarizes the main characteristics of the supported VPN protocols.
+The following table summarizes the primary characteristics of the supported VPN technologies.
 
 | Feature | WireGuard | OpenVPN | L2TP/IPsec |
 |----------|:---------:|:-------:|:----------:|
 | Security | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐☆ |
 | Performance | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐☆ | ⭐⭐⭐☆☆ |
-| Configuration Complexity | ⭐⭐⭐☆☆ | ⭐⭐⭐⭐☆ | ⭐⭐☆☆☆ |
-| NAT Traversal | Excellent | Excellent | Good |
-| Mobile Support | Excellent | Excellent | Good |
-| Windows Support | Excellent | Excellent | Excellent |
-| Linux Support | Excellent | Excellent | Good |
-| macOS Support | Excellent | Excellent | Good |
-| Certificate Support | No | Yes | Yes |
-| Multi-Factor Authentication | External Integration | External Integration | External Integration |
-| Recommended for New Deployments | ✅ Yes | ✅ Yes | ⚠ Legacy Compatibility |
+| CPU Usage | Very Low | Medium | Medium |
+| Configuration Complexity | Low | High | Medium |
+| Certificate Support | ❌ | ✅ | Optional |
+| Username & Password | ❌ | ✅ | ✅ |
+| RADIUS Support | Limited | ✅ | ✅ |
+| Multi-Factor Authentication | Limited | Excellent | Limited |
+| Site-to-Site VPN | Excellent | Very Good | Good |
+| Remote Access | Excellent | Excellent | Good |
+| Native Mobile Support | Excellent | Requires Client | Excellent |
+| Enterprise Authentication | Limited | Excellent | Good |
+| Recommended for New Deployments | ✅ | ✅ | ⚠ Legacy |
+
+For a detailed comparison, see:
+
+**docs/vpn-protocol-comparison.md**
 
 ---
 
 # Which VPN Protocol Should You Choose?
 
-Each VPN protocol has its own strengths and is suitable for different deployment scenarios.
+Each VPN protocol addresses different operational requirements.
 
 ## WireGuard
 
-WireGuard is the recommended choice for most new deployments.
+WireGuard is the preferred choice for most new deployments.
 
 Advantages:
 
-- Very high performance
-- Simple configuration
+- Excellent performance
 - Modern cryptography
-- Low CPU usage
+- Minimal configuration
+- Low CPU utilization
+- Fast tunnel establishment
 - Excellent mobile support
-- Fast connection establishment
 
 Recommended for:
 
 - Remote workers
 - Site-to-site VPN
+- Home office
+- Cloud connectivity
 - Small and medium-sized businesses
-- Cloud environments
 
 ---
 
 ## OpenVPN
 
-OpenVPN remains one of the most flexible and widely supported VPN solutions.
+OpenVPN remains the preferred solution whenever centralized authentication and enterprise identity management are required.
 
 Advantages:
 
-- Certificate-based authentication
-- Broad client compatibility
-- Mature and stable implementation
-- Flexible deployment options
-- Enterprise-ready
+- Certificate authentication
+- Username and password authentication
+- RADIUS integration
+- Active Directory integration
+- Multi-Factor Authentication
+- Mature enterprise ecosystem
 
 Recommended for:
 
-- Cross-platform environments
+- Enterprise environments
+- Active Directory
 - Certificate-based authentication
-- Enterprise remote access
-- Existing OpenVPN infrastructures
+- Multi-Factor Authentication
+- Managed Service Providers
+- Security-focused deployments
 
 ---
 
 ## L2TP/IPsec
 
-L2TP/IPsec is primarily recommended where compatibility with older operating systems or existing infrastructures is required.
+L2TP/IPsec is primarily recommended for environments requiring compatibility with built-in operating system VPN clients.
 
 Advantages:
 
-- Built into many operating systems
-- Easy client configuration
+- Native operating system support
 - Broad compatibility
-
-Limitations:
-
-- Lower performance compared to WireGuard
-- Higher protocol overhead
-- More complex troubleshooting
+- Mature implementation
+- No additional VPN client in most environments
 
 Recommended for:
 
-- Legacy client devices
-- Existing L2TP deployments
-- Compatibility-focused environments
+- Legacy environments
+- Built-in Windows VPN
+- Built-in macOS VPN
+- Built-in mobile VPN
+- Compatibility-focused deployments
 
 ---
 
@@ -318,39 +408,55 @@ Recommended for:
 
 A VPN should never be considered the only security layer.
 
-For production environments, always implement additional protection measures such as:
+For production environments, implement additional protection measures including:
 
 - Strong authentication
+- Individual user accounts
 - Multi-Factor Authentication (MFA)
 - Firewall filtering
-- Least privilege access
+- Network segmentation
+- Least Privilege
 - Regular RouterOS updates
 - Secure management access
-- Logging and monitoring
+- Logging
+- Monitoring
 - Regular configuration backups
+- Periodic security reviews
 
-For OpenVPN deployments, consider adding enterprise-grade Multi-Factor Authentication using PrivacyIDEA and FreeRADIUS.
+For OpenVPN deployments requiring enterprise-grade Multi-Factor Authentication, see the companion project:
 
-See the related project:
+## MikroTik OpenVPN Multi-Factor Authentication (MFA)
 
-**https://github.com/sarabelinformatika/privacyidea-freeradius-mikrotik-openvpn**
+https://github.com/sarabelinformatika/privacyidea-freeradius-mikrotik-openvpn
+
+This project demonstrates a complete integration using:
+
+- PrivacyIDEA
+- FreeRADIUS
+- Docker Compose
+- MariaDB
+- MikroTik RouterOS
+- Time-based One-Time Passwords (TOTP)
+- Enterprise authentication workflow
 
 ---
 
 # Screenshots
 
-Example screenshots included in this repository:
+The repository includes example screenshots demonstrating common RouterOS VPN configuration tasks and deployment scenarios.
 
-- MikroTik RouterOS VPN Configuration
-- WireGuard Interface
+Included screenshots cover:
+
+- WireGuard Interface Configuration
 - OpenVPN Server Configuration
 - L2TP/IPsec Configuration
 - Firewall Rules
 - NAT Configuration
-- VPN Client Connection
-- Successful VPN Authentication
+- VPN Client Configuration
+- Successful VPN Connection
+- RouterOS Interface Examples
 
-Screenshots are located in the `screenshots` directory.
+Screenshots are located in the `screenshots/` directory and are intended to complement the accompanying documentation.
 
 ---
 
@@ -358,14 +464,14 @@ Screenshots are located in the `screenshots` directory.
 
 This repository accompanies a detailed technical article published on the **SARABEL Informatika** website.
 
-## MikroTik VPN beállítás lépései – WireGuard, L2TP és OpenVPN útmutató (2026)
+## MikroTik VPN Setup Guide (WireGuard, L2TP/IPsec and OpenVPN) – 2026
 
-The article explains:
+The accompanying article covers:
 
-- Choosing the appropriate VPN protocol
-- WireGuard configuration
+- Selecting the appropriate VPN protocol
+- WireGuard deployment
 - OpenVPN deployment
-- L2TP/IPsec implementation
+- L2TP/IPsec deployment
 - Security best practices
 - Common VPN issues
 - Troubleshooting recommendations
@@ -381,25 +487,30 @@ Read the complete article:
 
 ## MikroTik OpenVPN Multi-Factor Authentication (MFA)
 
-Looking to secure your OpenVPN deployment with enterprise-grade Multi-Factor Authentication?
-
-See the complete PrivacyIDEA + FreeRADIUS integration project:
+If you require enterprise-grade Multi-Factor Authentication for MikroTik OpenVPN deployments, see the companion project:
 
 **https://github.com/sarabelinformatika/privacyidea-freeradius-mikrotik-openvpn**
 
-This project includes:
+The project includes:
 
 - PrivacyIDEA
 - FreeRADIUS
 - Docker Compose
 - MariaDB
-- MikroTik OpenVPN integration
-- Complete documentation
-- Production-ready deployment guide
+- MikroTik OpenVPN Integration
+- Complete Deployment Documentation
+- Enterprise Security Recommendations
+- Production-ready Reference Configuration
+
+Together, both repositories provide a complete reference implementation for secure MikroTik remote access deployments.
 
 ---
 
 # Technologies
+
+This repository covers the following technologies and concepts:
+
+## Networking
 
 - MikroTik RouterOS
 - WireGuard
@@ -408,9 +519,27 @@ This project includes:
 - Routing
 - Firewall
 - NAT
-- Network Security
+- RADIUS
 - VPN
+
+## Security
+
+- Network Security
+- Secure Remote Access
+- Multi-Factor Authentication
+- Least Privilege
+- Defense in Depth
+- Zero Trust
+- Security Hardening
+
+## Infrastructure
+
 - Enterprise Networking
+- Infrastructure Documentation
+- Production Deployments
+- Operational Best Practices
+- Troubleshooting
+- Reference Architecture
 
 ---
 
@@ -418,7 +547,7 @@ This project includes:
 
 This project is released under the **MIT License**.
 
-See the LICENSE file for details.
+See the `LICENSE` file for additional information.
 
 ---
 
@@ -428,37 +557,49 @@ See the LICENSE file for details.
 
 Enterprise IT Infrastructure • Network Security • MikroTik • Linux • Virtualization • Backup • Monitoring • Microsoft 365
 
-🌐 Website
+### Website
 
 https://sarabelinformatika.hu
 
-💼 LinkedIn
+### LinkedIn
 
 https://www.linkedin.com/in/sarabel-informatika-kft-8041003a1/
 
-💻 GitHub
+### GitHub
 
 https://github.com/sarabelinformatika
 
 ---
 
-## Contributing
+# Contributing
 
 Contributions, suggestions and improvements are welcome.
 
-If you discover an issue or have ideas that could improve this repository, feel free to open an Issue or submit a Pull Request.
+If you discover an issue, identify an error or have ideas that could improve this repository, feel free to:
+
+- Open an Issue
+- Submit a Pull Request
+- Suggest documentation improvements
+- Share deployment experiences
+
+Constructive feedback is always appreciated.
 
 ---
 
-## Support
+# Support
 
 If you found this repository useful, consider:
 
-- Starring the repository
-- Sharing it with other MikroTik administrators
-- Reading the related technical articles on the SARABEL Informatika blog
-- Following future project updates on GitHub
+- ⭐ Starring the repository
+- 🍴 Forking the repository
+- 📢 Sharing it with other MikroTik administrators
+- 📖 Reading the related technical articles on the SARABEL Informatika website
+- 👥 Following future projects on GitHub
 
-> **Note**
+Your support helps improve the documentation and encourages future open-source contributions.
+
+---
+
+> **Disclaimer**
 >
-> All IP addresses, hostnames, user accounts and example configurations used in this repository are provided for demonstration purposes only and should be replaced before deployment into a production environment.
+> All IP addresses, hostnames, usernames, certificates, keys, network diagrams and configuration examples included in this repository are provided solely for demonstration and educational purposes. Every environment is different; always review, adapt and thoroughly test configurations before deploying them into production systems.
