@@ -13,21 +13,8 @@ set \
     cipher=aes256-gcm \
     certificate=server-cert \
     require-client-certificate=yes \
-    default-profile=ovpn-profile \
+    default-profile=vpn-profile \
     tls-version=only-1.2
-
-###############################################################################
-# Example User
-###############################################################################
-
-/ppp secret
-
-add \
-    name=vpnuser \
-    password=ChangeThisPassword! \
-    service=ovpn \
-    profile=ovpn-profile \
-    comment="Example VPN User"
 
 ###############################################################################
 # Static Route Example
@@ -70,7 +57,7 @@ add \
 ###############################################################################
 
 #
-# Local PPP users
+# Local PPP authentication
 #
 # Suitable for:
 #
@@ -105,7 +92,7 @@ add \
 # - Android
 # - iOS
 #
-# Ensure that the client supports:
+# Recommended Settings:
 #
 # - TLS 1.2+
 # - AES-256-GCM
@@ -133,8 +120,9 @@ add \
 #
 # 192.168.120.100-199
 #
+
 ###############################################################################
-# Split Tunnel Example
+# Split Tunnel
 ###############################################################################
 
 #
@@ -146,8 +134,9 @@ add \
 #
 # Internet traffic remains local.
 #
+
 ###############################################################################
-# Full Tunnel Example
+# Full Tunnel
 ###############################################################################
 
 #
@@ -159,19 +148,17 @@ add \
 # - Firewall rules
 # - Internet access via MikroTik
 #
-###############################################################################
 
 ###############################################################################
 # Deployment Checklist
 ###############################################################################
 
 #
-# □ Server certificate installed
 # □ CA certificate installed
+# □ Server certificate installed
 # □ Server certificate trusted
 # □ OpenVPN Server enabled
-# □ PPP Profile assigned
-# □ IP Pool configured
+# □ PPP Profile configured
 # □ Firewall rules applied
 # □ NAT rules verified
 # □ DNS configured
@@ -201,7 +188,7 @@ add \
 ###############################################################################
 
 #
-# This reference configuration uses local PPP authentication.
+# This configuration uses the shared PPP profile.
 #
 # Enterprise deployments may integrate:
 #
@@ -223,7 +210,11 @@ add \
 ###############################################################################
 
 #
-# This file is intended as a secure baseline for RouterOS 7.x.
+# This file configures only the OpenVPN server.
+#
+# PPP Profile, IP Pool and user accounts are managed separately in:
+#
+# mikrotik/openvpn/ppp-profile.rsc
 #
 # Review:
 #
