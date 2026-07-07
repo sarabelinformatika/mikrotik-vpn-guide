@@ -569,7 +569,7 @@ https://www.linkedin.com/in/sarabel-informatika-kft-8041003a1/
 
 https://github.com/sarabelinformatika
 
-### Google
+### Google Business Profile
 
 https://share.google/WyzYNCwweENM06I3c
 
