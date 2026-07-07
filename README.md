@@ -573,10 +573,12 @@ https://github.com/sarabelinformatika
 
 https://share.google/WyzYNCwweENM06I3c
 
-**PrivacyIDEA + FreeRADIUS MFA Repository**  
+### PrivacyIDEA + FreeRADIUS MFA Repository
+
 https://github.com/sarabelinformatika/privacyidea-freeradius-mikrotik-openvpn
 
-**SARABEL Infrastructure Repository**  
+### SARABEL Infrastructure Repository
+
 https://github.com/sarabelinformatika/sarabelinformatika
 
 ---
