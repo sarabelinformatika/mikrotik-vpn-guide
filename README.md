@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./images/mikrotik-vpn-guide.jpg" alt="SARABEL Informatika Banner" width="100%">
+</p>
+
 # Enterprise MikroTik VPN Guide
 
 > A comprehensive guide for deploying secure MikroTik VPN solutions using WireGuard, OpenVPN and L2TP/IPsec with production-ready reference configurations, enterprise security best practices and troubleshooting.
