@@ -15,6 +15,15 @@
 
 ---
 
+<p align="center">
+
+🌐 <strong><a href="https://sarabelinformatika.hu">Official Website</a></strong> •
+📝 <strong><a href="https://sarabelinformatika.hu/blog">Technical Blog</a></strong>
+
+</p>
+
+---
+
 ## Quick Navigation
 
 📘 Documentation
